@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { BookingFormModal } from "@/components/booking-form-modal"
 
 const navItems = [
   { href: "#about", label: "わたしについて" },
@@ -41,9 +42,13 @@ export function Header() {
             <Button variant="ghost" size="sm" className="text-sm min-h-[44px]">
               ログイン
             </Button>
-            <Button size="sm" className="text-sm rounded-full px-5 min-h-[44px] shadow-sm hover:shadow-md transition-shadow">
-              初回面談を予約
-            </Button>
+            <BookingFormModal
+              trigger={
+                <Button size="sm" className="text-sm rounded-full px-5 min-h-[44px] shadow-sm hover:shadow-md transition-shadow">
+                  初回面談を予約
+                </Button>
+              }
+            />
           </div>
 
           <button
@@ -76,9 +81,13 @@ export function Header() {
             <Button variant="outline" className="w-full min-h-[48px] text-base touch-manipulation bg-transparent">
               ログイン
             </Button>
-            <Button className="w-full rounded-full min-h-[48px] text-base touch-manipulation">
-              初回面談を予約
-            </Button>
+            <BookingFormModal
+              trigger={
+                <Button className="w-full rounded-full min-h-[48px] text-base touch-manipulation">
+                  初回面談を予約
+                </Button>
+              }
+            />
           </div>
         </div>
       )}

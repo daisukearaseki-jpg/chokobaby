@@ -1,13 +1,18 @@
 # GitHub & Vercel Deploy Script
-# Usage: 1) gh auth login --web  2) npx vercel login  3) .\deploy.ps1
+# Usage: .\deploy.ps1
+# Token: $env:GITHUB_TOKEN="ghp_xxx"; $env:VERCEL_TOKEN="xxx"; .\deploy.ps1
 
 $ErrorActionPreference = "Stop"
 $repoName = "chokobaby"
 
+if ($env:GITHUB_TOKEN) {
+    $env:GITHUB_TOKEN | gh auth login --with-token 2>$null | Out-Null
+}
+
 Write-Host "`n=== Step 1: GitHub auth check ===" -ForegroundColor Cyan
 gh auth status 2>$null | Out-Null
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "NG: Run 'gh auth login --web' first" -ForegroundColor Red
+    Write-Host "NG: Run 'gh auth login --web' or set GITHUB_TOKEN" -ForegroundColor Red
     exit 1
 }
 Write-Host "OK" -ForegroundColor Green
@@ -24,9 +29,13 @@ if ($LASTEXITCODE -ne 0) {
 Write-Host "OK" -ForegroundColor Green
 
 Write-Host "`n=== Step 3: Deploy to Vercel ===" -ForegroundColor Cyan
-npx vercel --prod --yes
+if ($env:VERCEL_TOKEN) {
+    npx vercel --prod --yes --token $env:VERCEL_TOKEN
+} else {
+    npx vercel --prod --yes
+}
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "NG: Run 'npx vercel login' first" -ForegroundColor Red
+    Write-Host "NG: Run 'npx vercel login' or set VERCEL_TOKEN" -ForegroundColor Red
     exit 1
 }
 Write-Host "`nDone! Check the URL above." -ForegroundColor Green

@@ -1,6 +1,6 @@
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { BookingFormModal } from "@/components/booking-form-modal"
 
 export function CtaSection() {
   return (
@@ -14,17 +14,19 @@ export function CtaSection() {
           <br className="hidden sm:block" />
           あなたの「ちょっと預けたい」を、お手伝いさせてください。
         </p>
-        <Button
-          size="lg"
+        <BookingFormModal
+          trigger={
+            <Button
+              size="lg"
+              variant="secondary"
+              className="text-base px-8 py-6 rounded-full bg-background text-foreground hover:bg-background/90 min-h-[52px] w-full sm:w-auto touch-manipulation shadow-lg"
+            >
+              初回面談を予約する
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          }
           variant="secondary"
-          className="text-base px-8 py-6 rounded-full bg-background text-foreground hover:bg-background/90 min-h-[52px] w-full sm:w-auto touch-manipulation shadow-lg"
-          asChild
-        >
-          <Link href="/register">
-            初回面談を予約する
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Link>
-        </Button>
+        />
       </div>
     </section>
   )

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight, MapPin } from "lucide-react"
 import Link from "next/link"
+import { BookingFormModal } from "@/components/booking-form-modal"
 
 export function HeroSection() {
   return (
@@ -23,12 +24,14 @@ export function HeroSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-          <Button size="lg" className="text-base px-8 py-6 rounded-full min-h-[52px] w-full sm:w-auto touch-manipulation shadow-lg hover:shadow-xl transition-all" asChild>
-            <Link href="/register">
-              初回面談を予約する
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Link>
-          </Button>
+          <BookingFormModal
+            trigger={
+              <Button size="lg" className="text-base px-8 py-6 rounded-full min-h-[52px] w-full sm:w-auto touch-manipulation shadow-lg hover:shadow-xl transition-all">
+                初回面談を予約する
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            }
+          />
           <Button variant="ghost" size="lg" className="text-base text-muted-foreground min-h-[52px] w-full sm:w-auto touch-manipulation" asChild>
             <Link href="#about">サービスについて</Link>
           </Button>

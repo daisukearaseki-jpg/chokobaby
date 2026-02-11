@@ -1,6 +1,6 @@
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { BookingFormModal } from "@/components/booking-form-modal"
 
 const steps = [
   {
@@ -68,12 +68,14 @@ export function FlowSection() {
 
         {/* CTA */}
         <div className="mt-10 sm:mt-12 text-center">
-          <Button size="lg" className="rounded-full px-8 py-6 text-base min-h-[52px] w-full sm:w-auto touch-manipulation shadow-lg hover:shadow-xl transition-all" asChild>
-            <Link href="/register">
-              初回面談を予約する
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Link>
-          </Button>
+          <BookingFormModal
+            trigger={
+              <Button size="lg" className="rounded-full px-8 py-6 text-base min-h-[52px] w-full sm:w-auto touch-manipulation shadow-lg hover:shadow-xl transition-all">
+                初回面談を予約する
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            }
+          />
         </div>
       </div>
     </section>

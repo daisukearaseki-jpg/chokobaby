@@ -2,6 +2,8 @@ import React from "react"
 import type { Metadata, Viewport } from 'next'
 import { Noto_Sans_JP } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Toaster } from '@/components/ui/sonner'
+import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 import { Zen_Maru_Gothic } from 'next/font/google'
 
@@ -46,7 +48,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${notoSansJP.className} antialiased`}>
-        {children}
+        <ThemeProvider>
+          {children}
+          <Toaster position="top-center" richColors closeButton />
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>
