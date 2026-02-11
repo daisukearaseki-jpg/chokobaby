@@ -3,7 +3,11 @@ import { Resend } from "resend"
 import { google } from "googleapis"
 import { bookingSchema } from "@/lib/validations/booking"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+function getResend() {
+  const key = process.env.RESEND_API_KEY
+  if (!key) return null
+  return new Resend(key)
+}
 
 function getGoogleSheetsClient() {
   const credentials = process.env.GOOGLE_SHEETS_CREDENTIALS
@@ -58,7 +62,8 @@ export async function POST(request: Request) {
     const { name, email, phone } = parsed.data
 
     const adminEmail = process.env.ADMIN_EMAIL
-    if (process.env.RESEND_API_KEY && adminEmail) {
+    const resend = getResend()
+    if (resend && adminEmail) {
       try {
         await resend.emails.send({
           from: process.env.RESEND_FROM ?? "onboarding@resend.dev",
