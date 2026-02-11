@@ -23,6 +23,11 @@ export const metadata: Metadata = {
   title: 'ちょこbaby | あきる野市・日の出町の出張ベビーシッター',
   description: '東京都あきる野市・日の出町限定。4児の母が提供する、安心の出張型ベビーシッターサービス。買い物や美容院など、ちょっとした時間のお預かりに。',
   generator: 'v0.app',
+  metadataBase: new URL('https://chokobaby.vercel.app'),
+  openGraph: {
+    type: 'website',
+    locale: 'ja_JP',
+  },
   icons: {
     icon: [
       { url: '/icon-light-32x32.png', media: '(prefers-color-scheme: light)' },
@@ -46,8 +51,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ja">
-      <body className={`${notoSansJP.className} antialiased`}>
+    <html lang="ja" className="scroll-smooth">
+      <body className={`${notoSansJP.className} antialiased min-h-screen w-full`}>
         <ThemeProvider>
           {children}
           <Toaster position="top-center" richColors closeButton />
